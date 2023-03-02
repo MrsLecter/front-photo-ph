@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import logoInfoSVG from "@images/logo-info.svg";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 const LogoInfoElem = styled.div`
   width: 100vw;
@@ -19,15 +19,14 @@ const LogoInfoElem = styled.div`
 `;
 
 const LogoInfo: React.FC = () => {
-  const svgVariants = {
+  const svgVariants: Variants = {
     visible: {
       y: 10,
       transition: { type: "spring", bounce: 1, duration: 5, repeat: Infinity },
     },
-    transition: { repeat: Infinity },
   };
 
-  const pathVariants = {
+  const pathVariants: Variants = {
     hidden: {
       opacity: 0,
       pathLength: 0,
