@@ -38,7 +38,7 @@ export const UploadImageElementBtnPanel = styled.div`
     font-size: 18px;
     line-height: 23.08px;
     background-color: white;
-    color: #262626;
+    color: ${({ theme }) => theme.text.main};
     img {
       width: 20px;
       height: 20px;
@@ -47,9 +47,9 @@ export const UploadImageElementBtnPanel = styled.div`
   }
 
   button:hover {
-    color: #592ce0f3;
+    color: ${({ theme }) => theme.swich_background};
     cursor: pointer;
-    background-color: #eeeeee;
+    background-color: ${({ theme }) => theme.input.border};
   }
 
   input {
@@ -68,7 +68,7 @@ export const UploadImageElementBtnPanel = styled.div`
     width: 120px;
     height: 40px;
     background-color: white;
-    color: #262626;
+    color: ${({ theme }) => theme.text.main};
     font-family: "Futura";
     font-weight: 600;
     font-size: 18px;
@@ -81,9 +81,9 @@ export const UploadImageElementBtnPanel = styled.div`
     }
 
     &:hover {
-      color: #592ce0f3;
+      color: ${({ theme }) => theme.swich_background};
       cursor: pointer;
-      background-color: #eeeeee;
+      background-color: ${({ theme }) => theme.input.border};
     }
   }
 `;
@@ -100,7 +100,7 @@ export const UploadImageElementChooseLabel = styled.div`
   width: 120px;
   height: 40px;
   background-color: white;
-  color: #262626;
+  color: ${({ theme }) => theme.text.main};
   font-family: "Futura";
   font-weight: 600;
   font-size: 18px;
@@ -113,9 +113,9 @@ export const UploadImageElementChooseLabel = styled.div`
   }
 
   &:hover {
-    color: #592ce0f3;
+    color: ${({ theme }) => theme.swich_background};
     cursor: pointer;
-    background-color: #eeeeee;
+    background-color: ${({ theme }) => theme.input.border};
   }
 `;
 
@@ -138,7 +138,7 @@ export const UploadImageElementPicture = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #3300cc;
+  border-bottom: 1px solid ${({ theme }) => theme.button.background};
 
   button {
     display: flex;
@@ -149,7 +149,7 @@ export const UploadImageElementPicture = styled.div`
     width: 120px;
     height: 40px;
     background-color: white;
-    color: #262626;
+    color: ${({ theme }) => theme.text.main};
 
     img {
       width: 20px;
@@ -159,9 +159,9 @@ export const UploadImageElementPicture = styled.div`
   }
 
   button:hover {
-    color: #592ce0f3;
+    color: ${({ theme }) => theme.swich_background};
     cursor: pointer;
-    background-color: #eeeeee;
+    background-color: ${({ theme }) => theme.input.border};
   }
 `;
 
@@ -183,7 +183,7 @@ export const UploadImageElementOwners = styled.input`
   font-weight: 500;
   font-size: 14px;
   line-height: 23.08px;
-  color: #6d6d6d;
+  color: ${({ theme }) => theme.text.second};
   width: 80px;
   margin-bottom: -28px;
   outline: none;
@@ -199,7 +199,7 @@ export const UploadImageElementOwnersLabel = styled.label`
   font-weight: 500;
   font-size: 14px;
   line-height: 23.08px;
-  color: #6d6d6d;
+  color: ${({ theme }) => theme.text.second};
   width: 50px;
   margin-bottom: -25px;
   margin-left: 20px;

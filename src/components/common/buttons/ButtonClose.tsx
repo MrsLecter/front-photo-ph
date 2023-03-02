@@ -20,7 +20,7 @@ const BtnClose = styled(motion.button)`
   font-size: 18px;
   line-height: 23.08px;
   background-color: white;
-  color: #262626;
+  color: ${({ theme }) => theme.text.main};
   object-fit: cover;
 
   img {
@@ -30,7 +30,7 @@ const BtnClose = styled(motion.button)`
 
   &:hover {
     cursor: pointer;
-    background-color: #eeeeee;
+    background-color: ${({ theme }) => theme.input.border};
   }
 `;
 

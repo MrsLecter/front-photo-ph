@@ -4,7 +4,7 @@ interface IWrapperInfoProps {
   children: React.ReactNode;
 }
 
-const Info = styled.div`
+const StyledWrapperInfo = styled.div`
   box-sizing: border-box;
   width: 100%;
   padding: 0 15px;
@@ -14,7 +14,7 @@ const Info = styled.div`
   font-weight: 400;
   font-size: 16px;
   line-height: 20.51px;
-  color: #262626;
+  color: ${({ theme }) => theme.text.main};
   overflow: hidden;
 
   h4 {
@@ -36,7 +36,7 @@ const Info = styled.div`
 `;
 
 const WrapperInfo: React.FC<IWrapperInfoProps> = ({ children }) => {
-  return <Info>{children}</Info>;
+  return <StyledWrapperInfo>{children}</StyledWrapperInfo>;
 };
 
 export default WrapperInfo;

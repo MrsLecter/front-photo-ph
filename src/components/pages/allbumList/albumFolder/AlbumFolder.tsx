@@ -47,11 +47,11 @@ const Album = styled(motion.div)`
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
-  border: 1px solid #3300cc;
+  border: 1px solid ${({ theme }) => theme.button.background};
 
   &:hover {
     cursor: pointer;
-    background-color: #eeeeee;
+    background-color: ${({ theme }) => theme.input.border};
   }
 `;
 
@@ -80,7 +80,7 @@ const AlbumName = styled.div`
   font-family: "Termina";
   font-weight: 400;
   font-size: 18px;
-  color: #262626;
+  color: ${({ theme }) => theme.text.main};
   overflow: hidden;
   text-overflow: ellipsis;
 `;
@@ -91,7 +91,7 @@ const AlbumLocation = styled.div`
   font-family: "Futura";
   font-weight: 400;
   font-size: 14px;
-  color: #6d6d6d;
+  color: ${({ theme }) => theme.text.second};
   overflow: hidden;
   text-overflow: ellipsis;
 `;
@@ -101,5 +101,5 @@ const AlbumDatapicker = styled.div`
   font-family: "Futura";
   font-weight: 400;
   font-size: 12px;
-  color: #6d6d6d;
+  color: ${({ theme }) => theme.text.second}; ;
 `;

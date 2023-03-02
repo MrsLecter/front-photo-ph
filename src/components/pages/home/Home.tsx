@@ -16,6 +16,7 @@ import {
 
 const Home: React.FC = () => {
   const { isLoggedIn } = useAppSelector((state) => state.userReducer);
+  console.log()
   return (
     <Wrapper>
       <HomePage>

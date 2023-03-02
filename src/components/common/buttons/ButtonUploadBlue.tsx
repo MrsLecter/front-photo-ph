@@ -27,7 +27,7 @@ const BtnUpload = styled(motion.button)`
   align-items: center;
   border: none;
   border-radius: 50px;
-  background-color: #3300cc;
+  background-color: ${({ theme }) => theme.button.background};
   color: #ffffff;
   font-family: "Futura";
   font-weight: 600;
@@ -43,6 +43,6 @@ const BtnUpload = styled(motion.button)`
 
   &:hover {
     cursor: pointer;
-    background-color: #564afc;
+    background-color: ${({ theme }) => theme.button.background_hovered_light};
   }
 `;

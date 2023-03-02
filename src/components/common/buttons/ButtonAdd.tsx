@@ -4,7 +4,7 @@ import plusSVG from "@images/plus.svg";
 import { AppUrlsEnum } from "@const";
 import { motion } from "framer-motion";
 
-const BtnAdd = styled(motion.button)`
+const StyledButtonAdd = styled(motion.button)`
   float: right;
   width: 70px;
   height: 41px;
@@ -13,14 +13,14 @@ const BtnAdd = styled(motion.button)`
   align-items: center;
   margin-top: -48px;
   margin-right: 30px;
-  border: 1px solid #3300cc;
+  border: 1px solid ${({ theme }) => theme.button.background};
   border-radius: 6px;
   font-family: "Futura";
   font-weight: 600;
   font-size: 18px;
   line-height: 23.08px;
   background-color: white;
-  color: #262626;
+  color: ${({ theme }) => theme.text.main};
   object-fit: cover;
   img {
     width: 40px;
@@ -29,7 +29,7 @@ const BtnAdd = styled(motion.button)`
 
   &:hover {
     cursor: pointer;
-    background-color: #eeeeee;
+    background-color: ${({ theme }) => theme.input.border};
   }
 `;
 
@@ -39,14 +39,14 @@ const ButtonAdd: React.FC = () => {
     navigate("../" + AppUrlsEnum.ALBUM_CREATE);
   };
   return (
-    <BtnAdd
+    <StyledButtonAdd
       onClick={addAlbumHandler}
       type="button"
       whileHover={{ scale: 1.06 }}
       whileTap={{ scale: 0.9 }}
     >
       <img src={plusSVG} alt="plus.svg" />
-    </BtnAdd>
+    </StyledButtonAdd>
   );
 };
 

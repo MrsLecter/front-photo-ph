@@ -29,7 +29,7 @@ const InfoPageMessage = styled.div`
   text-transform: uppercase;
   line-height: 23.08px;
   text-align: center;
-  color: $text_second;
+  color: ${({ theme }) => theme.text.second};
 `;
 
 export const Info: React.FC = () => {

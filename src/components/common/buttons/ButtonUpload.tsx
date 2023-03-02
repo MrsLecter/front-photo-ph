@@ -26,7 +26,7 @@ const BtnUpload = styled(motion.button)`
   align-items: center;
   background-color: white;
   border: none;
-  color: #262626;
+  color: ${({ theme }) => theme.text.main};
   font-family: "Futura";
   font-weight: 600;
   font-size: 18px;

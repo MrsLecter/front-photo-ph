@@ -5,7 +5,7 @@ export const Label = styled.label`
   font-weight: 600;
   font-size: 18px;
   line-height: 23.08px;
-  color: #262626;
+  color: ${({ theme }) => theme.text.main};
 `;
 
 export const ErrorMessage = styled.div`
@@ -27,15 +27,15 @@ export const Input = styled.input<{ isValid: boolean }>`
   border-radius: 10px;
   outline: none;
   border:${(props) => (props.isValid ? "1px solid #eeeeee;" : "1px solid red;")}
-  background: #f4f4f4;
+  background: ${({ theme }) => theme.input.background};
   font-family: "Futura";
   font-weight: 500;
   font-size: 16px;
   line-height: 20.51px;
-  color: #6d6d6d;
+  color:${({ theme }) => theme.text.second};
 
   &:hover{
-    border: 1px solid #3300cc;
+    border: 1px solid ${({ theme }) => theme.button.background};;
   }
 `;
 

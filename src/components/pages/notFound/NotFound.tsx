@@ -13,7 +13,7 @@ const NotFoundPage = styled.div`
   align-items: center;
   justify-content: flex-start;
   font-family: "Futura";
-  color: #262626;
+  color: ${({ theme }) => theme.text.main};
 
   img {
     width: 81.8px;
@@ -31,23 +31,23 @@ const NotFoundPageMessage = styled.div`
   text-align: center;
   font-size: 32px;
   font-weight: 400;
-  color: #262626;
+  color: ${({ theme }) => theme.text.main};
 `;
 
 const NotFoundPageBtn = styled(motion.button)`
   width: 150px;
   height: 40px;
-  border: 1px solid #3300cc;
+  border: 1px solid ${({ theme }) => theme.button.background};
   border-radius: 50px;
   font-family: "Futura";
   font-size: 20px;
   font-weight: 600;
-  color: #3300cc;
+  color: ${({ theme }) => theme.button.background};
   background-color: white;
 
   &:hover {
     cursor: pointer;
-    background-color: #2c00b0;
+    background-color: ${({ theme }) => theme.button.background_hovered_dark};
     color: white;
   }
 `;

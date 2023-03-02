@@ -28,7 +28,7 @@ const Links = styled.div`
   font-weight: 400;
   font-size: 14px;
   line-height: 17.95px;
-  color: $text_second;
+  color: ${({ theme }) => theme.text.second};
 
   div:nth-child(1) {
     height: 46px;
@@ -37,10 +37,10 @@ const Links = styled.div`
 
   a,
   a:active {
-    color: $text_second;
+    color: ${({ theme }) => theme.text.second};
   }
 
   a:hover {
-    color: $text_main;
+    color: ${({ theme }) => theme.text.main};
   }
 `;

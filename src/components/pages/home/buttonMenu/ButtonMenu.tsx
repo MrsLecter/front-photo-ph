@@ -59,8 +59,8 @@ const BtnMenu = styled.button`
   &:hover,
   &:hover span {
     cursor: pointer;
-    background-color: #2c00b0;
-    text-shadow: -1px -1px 0 darken(#3300cc, 9.5%);
+    background-color: ${({ theme }) => theme.button.background_hovered_dark};
+    text-shadow: -1px -1px 0 darken(${({ theme }) => theme.button.background}, 9.5%);
     width: 300px;
   }
 

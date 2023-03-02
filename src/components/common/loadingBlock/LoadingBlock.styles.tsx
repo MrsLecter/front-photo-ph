@@ -38,7 +38,7 @@ export const Message = styled.div`
   font-weight: 500;
   font-size: 18px;
   line-height: 23.08px;
-  color: #262626;
+  color: ${({ theme }) => theme.text.main}; ;
 `;
 
 export const BackdropBlock = styled.div`
