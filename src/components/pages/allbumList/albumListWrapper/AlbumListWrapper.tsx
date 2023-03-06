@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-const AlbumListWrapper: React.FC<AlbumListWrapperProps> = ({ children }) => {
+const AlbumListWrapper: React.FC<IAlbumListWrapperProps> = ({ children }) => {
   return <ListWrapper>{children}</ListWrapper>;
 };
 
-interface AlbumListWrapperProps {
+interface IAlbumListWrapperProps {
   children: React.ReactNode;
 }
 

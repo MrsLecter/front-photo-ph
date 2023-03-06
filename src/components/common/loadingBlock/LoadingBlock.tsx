@@ -1,4 +1,4 @@
-import loadingSVG from "@images/loading-spinner.png";
+import loadingSVG from "@images/gif-loader.gif";
 import ReactDOM from "react-dom";
 import { Loading, Message, BackdropBlock } from "./LoadingBlock.styles";
 

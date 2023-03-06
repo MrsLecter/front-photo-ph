@@ -103,7 +103,7 @@ class FetchRequestsHandler {
     albumObject: {
       albumname: string;
       albumlocation: string;
-      date: Date;
+      date: string;
     };
   }): Promise<IInfoResponse> {
     try {
@@ -133,28 +133,6 @@ class FetchRequestsHandler {
     accessToken: string,
     formData: FormData
   ): Promise<IInfoResponse> {
-    // try {
-    //   const response: Response = await fetch(SEND_PHOTO_URL, {
-    //     method: "POST",
-    //     mode: "cors",
-    //     body: formData,
-    //     headers: {
-    //       "Access-Control-Allow-Methods": "POST",
-    //       "Content-type": "multipart/form-data",
-    //       "Access-Control-Allow-Headers":
-    //         "Content-Type, Authorization, X-Requested-With",
-    //       "Content-Security-Policy": "default-src self",
-    //       // "Access-Control-Allow-Headers": "Content-Type, Authorization",
-    //       // "Access-Control-Allow-Methods": "POST",
-    //       // "Content-type": "multipart/form-data",
-    //       Authorization: `Bearer ${accessToken}`,
-    //     },
-    //   });
-    //   return response.json();
-    // } catch (err: any) {
-    //   console.error("An error occured in postPhotos: ", err);
-    //   return err.code;
-    // }
     try {
       const response: IInfoResponse = await axios({
         method: "post",

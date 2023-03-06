@@ -31,7 +31,7 @@ export const REQUEST_HEADERS_POST_PHOTOS = {
   "Content-Security-Policy": "default-src self",
 };
 
-export const BASIC_URL = `https://0524-5-255-191-74.eu.ngrok.io`;
+export const BASIC_URL = `https://bd17-5-255-182-125.eu.ngrok.io`;
 export const REGISTRATION_URL = `${BASIC_URL}/ph-register`;
 export const LOGIN_URL = `${BASIC_URL}/ph-login`;
 export const REFRESH_URL = `${BASIC_URL}/refresh-ph-tokens`;
@@ -42,37 +42,13 @@ export const SEND_PHOTO_URL = `${BASIC_URL}/upload-photos-to-s3`;
 export const SEND_PHOTO_URL2 = `${BASIC_URL}/upload-photos`;
 
 export enum AppUrlsEnum {
-  HOME = "/",
   LOGIN = "./login",
   REG = "./registration",
   ALBUM_CREATE = "./albums/create",
-  ALBUM_LIST = "./albums",
-  ALBUM_PAGE = "./albums/:albumName",
+  ALBUM_LIST = "./",
+  ALBUM_PAGE = "./albums",
   POLICY = "./policy",
   TERMS = "./terms",
-  INFO = "./info/:message",
+  INFO = "./info",
   OTHER = "*",
 }
-
-export const MAIN_MENU_BUTTONS = [
-  {
-    id: 1,
-    label: "New album",
-    way: AppUrlsEnum.ALBUM_CREATE,
-  },
-  {
-    id: 2,
-    label: "All albums",
-    way: AppUrlsEnum.ALBUM_LIST,
-  },
-  {
-    id: 4,
-    label: "Policy",
-    way: AppUrlsEnum.POLICY,
-  },
-  {
-    id: 5,
-    label: "Terms",
-    way: AppUrlsEnum.TERMS,
-  },
-];

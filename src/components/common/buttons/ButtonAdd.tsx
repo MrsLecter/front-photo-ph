@@ -2,9 +2,11 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import plusSVG from "@images/plus.svg";
 import { AppUrlsEnum } from "@const";
-import { motion } from "framer-motion";
 
-const StyledButtonAdd = styled(motion.button)`
+const StyledButtonAdd = styled.button`
+  position: absolute;
+  top: 53px;
+  left: 20px;
   float: right;
   width: 70px;
   height: 41px;
@@ -22,6 +24,8 @@ const StyledButtonAdd = styled(motion.button)`
   background-color: white;
   color: ${({ theme }) => theme.text.main};
   object-fit: cover;
+  z-index: 3;
+
   img {
     width: 40px;
     height: 40px;
@@ -39,12 +43,7 @@ const ButtonAdd: React.FC = () => {
     navigate("../" + AppUrlsEnum.ALBUM_CREATE);
   };
   return (
-    <StyledButtonAdd
-      onClick={addAlbumHandler}
-      type="button"
-      whileHover={{ scale: 1.06 }}
-      whileTap={{ scale: 0.9 }}
-    >
+    <StyledButtonAdd onClick={addAlbumHandler} type="button">
       <img src={plusSVG} alt="plus.svg" />
     </StyledButtonAdd>
   );

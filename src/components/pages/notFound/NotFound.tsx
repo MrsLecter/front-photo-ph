@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
 
 import WrapperPage from "@/components/wrappers/wrapperPage/WrapperPage";
 import logoInfoSVG from "@images/camera-disabled.png";
@@ -34,7 +33,7 @@ const NotFoundPageMessage = styled.div`
   color: ${({ theme }) => theme.text.main};
 `;
 
-const NotFoundPageBtn = styled(motion.button)`
+const NotFoundPageBtn = styled.button`
   width: 150px;
   height: 40px;
   border: 1px solid ${({ theme }) => theme.button.background};
@@ -63,10 +62,7 @@ const NotFound: React.FC = () => {
           the page you were looking doesent exist
         </NotFoundPageMessage>
 
-        <NotFoundPageBtn
-          onClick={() => navigation("/")}
-          whileTap={{ scale: 0.9 }}
-        >
+        <NotFoundPageBtn onClick={() => navigation("../")}>
           Go Home
         </NotFoundPageBtn>
       </NotFoundPage>

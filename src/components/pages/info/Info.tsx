@@ -7,6 +7,7 @@ import WrapperPage from "@/components/wrappers/wrapperPage/WrapperPage";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { AppUrlsEnum } from "@const";
+import WrapperContent from "@wrappers/wrapperContent/WrapperContent";
 
 const InfoPage = styled.div`
   width: 100%;
@@ -22,7 +23,7 @@ const InfoPageWrapper = styled.div`
 const InfoPageMessage = styled.div`
   width: 345px;
   height: 27px;
-  margin-bottom: 400px;
+  margin-bottom: 20vh;
   font-family: "Futura";
   font-weight: 400;
   font-size: 18px;
@@ -36,23 +37,25 @@ export const Info: React.FC = () => {
   const navigate = useNavigate();
   const message = useParams().message || "message not found";
   const goBackHandler = () => {
-    navigate(AppUrlsEnum.HOME);
+    navigate("../");
   };
   return (
     <WrapperPage>
       <Logo />
-      <LogoInfo />
-      <Header label={"🤔 Something happened"} />
-      <InfoPage>
-        <InfoPageWrapper>
-          <InfoPageMessage>
-            {message
-              ? message
-              : "Oops! Unexpected error! Refresh page to continue"}
-          </InfoPageMessage>
-          <ButtonSubmit label={"Go back"} buttonHandler={goBackHandler} />
-        </InfoPageWrapper>
-      </InfoPage>
+      <WrapperContent>
+        <LogoInfo />
+        <Header label={"🤔 Something happened"} />
+        <InfoPage>
+          <InfoPageWrapper>
+            <InfoPageMessage>
+              {message
+                ? message
+                : "Oops! Unexpected error! Refresh page to continue"}
+            </InfoPageMessage>
+            <ButtonSubmit label={"Go back"} buttonHandler={goBackHandler} />
+          </InfoPageWrapper>
+        </InfoPage>
+      </WrapperContent>
     </WrapperPage>
   );
 };

@@ -20,12 +20,12 @@ export const BtnSubmit = styled(motion.button)`
   }
 `;
 
-interface BtnSubmitProps {
+interface IBtnSubmitProps {
   label: string;
-  buttonHandler: (e: React.MouseEvent) => void;
+  buttonHandler?: (e: React.MouseEvent) => void;
 }
 
-const ButtonSubmit: React.FC<BtnSubmitProps> = ({ label, buttonHandler }) => {
+const ButtonSubmit: React.FC<IBtnSubmitProps> = ({ label, buttonHandler }) => {
   return (
     <BtnSubmit onClick={buttonHandler} type="submit" whileTap={{ scale: 0.9 }}>
       {label}

@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { AppUrlsEnum } from "@const";
 
 const BtnClose = styled(motion.button)`
+  position: absolute;
+  top: 54px;
   float: left;
   width: 40px;
   height: 41px;
@@ -37,7 +39,7 @@ const BtnClose = styled(motion.button)`
 const ButtonClose: React.FC = () => {
   const navigate = useNavigate();
   const closeModalHandler = () => {
-    navigate("../" + AppUrlsEnum.ALBUM_LIST);
+    navigate("../");
   };
   return (
     <BtnClose

@@ -13,12 +13,12 @@ const CustomHeader = styled.div<{ marginTop: string }>`
   overflow-x: hidden;
 `;
 
-interface HeaderProps {
+interface IHeaderProps {
   label: string;
   top?: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ top, label }) => {
+const Header: React.FC<IHeaderProps> = ({ top, label }) => {
   return <CustomHeader marginTop={top || ""}>{label}</CustomHeader>;
 };
 

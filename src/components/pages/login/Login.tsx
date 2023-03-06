@@ -1,6 +1,11 @@
 import { userSlice } from "@/components/store/reducers/userSlice";
-import { LOGIN_REGEXP, PASSWORD_REGEXP, EMAIL_REGEXP } from "@const";
-import { useAppDispatch, useAppSelector } from "@hooks/reducers-hooks";
+import {
+  LOGIN_REGEXP,
+  PASSWORD_REGEXP,
+  TWENTY_FOUR_HOURS_IN_MS,
+  AppUrlsEnum,
+} from "@const";
+import { useAppDispatch } from "@hooks/reducers-hooks";
 import { useInput } from "@hooks/use-input";
 import { useState } from "react";
 import { useNavigate, useNavigation } from "react-router-dom";
@@ -8,7 +13,6 @@ import LoadingBlock from "@common/loadingBlock/LoadingBlock";
 import Logo from "@common/logo/Logo";
 import Header from "@common/header/Header";
 import {
-  FormErrorMessage,
   FormInput,
   FormLabel,
   FormMain,
@@ -17,6 +21,8 @@ import WrapperPage from "@wrappers/wrapperPage/WrapperPage";
 import ButtonSubmit from "@common/buttons/ButtonSubmit";
 import requestHandler from "@/api/fetch-request-handler";
 import { ILoginResponse } from "@/api/fetch-requests-handler.types";
+import WrapperContent from "@wrappers/wrapperContent/WrapperContent";
+import localStorageHandler from "@/components/utils/localStoragehandler";
 
 export const Login: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -47,21 +53,29 @@ export const Login: React.FC = () => {
     if (loginIsValid && passwordIsValid) {
       setIsLoading(true);
       try {
-        const response: ILoginResponse = await requestHandler.login({
+        const loginResponse: ILoginResponse = await requestHandler.login({
           login,
           password,
         });
-        const { refreshtoken, token, status, message } = response;
+        const { refreshtoken, token, status, message } = loginResponse;
         if (status === 200) {
+          localStorageHandler.setPhotographerData({
+            accessToken: token,
+            refreshToken: refreshtoken,
+            expiresIn: new Date().getTime() + TWENTY_FOUR_HOURS_IN_MS,
+          });
           dispatch(
             enroll({
               accessToken: token,
               refreshToken: refreshtoken,
             })
           );
-          navigate("/albums");
+
+          navigate("../");
+        } else if (status === 406) {
+          navigate("../" + AppUrlsEnum.REG);
         } else {
-          navigate(`/info/${message}`);
+          navigate("../" + AppUrlsEnum.INFO + `/${message}`);
         }
       } catch (err: unknown) {
         console.error(new Error(err as string));
@@ -76,44 +90,28 @@ export const Login: React.FC = () => {
         {isLoading ? <LoadingBlock /> : <></>}
         {navigation.state === "loading" ? <LoadingBlock /> : <></>}
         <Logo />
-        <Header label="Let’s get started" />
-        <FormMain onFormSubmit={onFormSubmit} formName={"signupform"}>
-          <FormLabel text={"Login:"} />
-          <FormInput
-            inputIsValid={loginIsValid}
-            inputType={"text"}
-            inputName={"login"}
-            inputValue={login}
-            onChangeHandler={loginChangeHandler}
-          />
-          {loginIsValid ? (
-            <FormErrorMessage text={""} />
-          ) : login.length === 0 ? (
-            <FormErrorMessage text={"Field must not be empty"} />
-          ) : (
-            <FormErrorMessage text={"Error: invalid login"} />
-          )}
-
-          <FormLabel text={"Password:"} />
-          <FormInput
-            inputIsValid={passwordIsValid}
-            inputType={"password"}
-            inputName={"password"}
-            inputValue={password}
-            onChangeHandler={passwordChangeHandler}
-          />
-          {passwordIsValid ? (
-            <FormErrorMessage text={""} />
-          ) : password.length === 0 ? (
-            <FormErrorMessage text={"Field must not be empty"} />
-          ) : (
-            <FormErrorMessage text={"Error: invalid pasword"} />
-          )}
-          <ButtonSubmit
-            buttonHandler={() => console.log("submit")}
-            label={"Login"}
-          />
-        </FormMain>
+        <WrapperContent>
+          <Header label="Let’s get started" />
+          <FormMain onFormSubmit={onFormSubmit} formName={"signupform"}>
+            <FormLabel text={"Login:"} />
+            <FormInput
+              inputIsValid={loginIsValid}
+              inputType={"text"}
+              inputName={"login"}
+              inputValue={login}
+              onChangeHandler={loginChangeHandler}
+            />
+            <FormLabel text={"Password:"} />
+            <FormInput
+              inputIsValid={passwordIsValid}
+              inputType={"password"}
+              inputName={"password"}
+              inputValue={password}
+              onChangeHandler={passwordChangeHandler}
+            />
+            <ButtonSubmit label={"Login"} />
+          </FormMain>
+        </WrapperContent>
       </WrapperPage>
     </div>
   );

@@ -18,9 +18,8 @@ const RequireAuth = ({
   redirectTo: string;
   children: JSX.Element;
 }) => {
-  const { isLoggedIn } = useAppSelector((store) => store.userReducer);
-  console.log("isLoggedIn", isLoggedIn);
-  return isLoggedIn ? children : <Navigate to={redirectTo} />;
+  const { accessToken } = useAppSelector((store) => store.userReducer);
+  return !!accessToken ? children : <Navigate to={redirectTo} />;
 };
 
 const albums_route_group_protected = [
@@ -34,12 +33,8 @@ const albums_route_group_protected = [
     errorElement: <Info />,
   },
   {
-    path: "/albums",
-    element: (
-      <RequireAuth redirectTo="/">
-        <AlbumList />
-      </RequireAuth>
-    ),
+    path: "/",
+    element: <AlbumList />,
     errorElement: <Info />,
   },
   {
@@ -78,11 +73,6 @@ const policy_route_group = [
 ];
 
 const service_route_group = [
-  {
-    path: "/",
-    element: <Home />,
-    errorElement: <Info />,
-  },
   {
     path: "/info/:message",
     element: <Info />,

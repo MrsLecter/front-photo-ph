@@ -1,14 +1,14 @@
 import { ButtonUpload } from "@common/buttons/ButtonUpload";
 import styled from "styled-components";
 
-export interface AlbumPanelProps {
+export interface IAlbumPanelProps {
   photosAmount: number;
   swithChangeHandler: React.ChangeEventHandler<HTMLInputElement>;
   checked: boolean;
   buttonUpload: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export const AlbumPanel: React.FC<AlbumPanelProps> = (props) => {
+export const AlbumPanel: React.FC<IAlbumPanelProps> = (props) => {
   return (
     <Panel>
       {props.photosAmount > 1 ? (

@@ -10,8 +10,8 @@ export const LegalLinks: React.FC = () => {
         89203 to opt out.
       </div>
       <div>
-        By continuing, you indicate that you have read and agree to our
-        <a href={AppUrlsEnum.TERMS}>Terms of Use</a> &
+        By continuing, you indicate that you have read and agree to our&nbsp;
+        <a href={AppUrlsEnum.TERMS}>Terms of Use</a>&nbsp;&&nbsp;
         <a href={AppUrlsEnum.POLICY}>Privacy Policy</a>
       </div>
     </Links>
@@ -35,7 +35,10 @@ const Links = styled.div`
     margin-bottom: 38px;
   }
 
-  a,
+  a {
+    color: ${({ theme }) => theme.text.main};
+  }
+
   a:active {
     color: ${({ theme }) => theme.text.second};
   }

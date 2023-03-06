@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import backSVG from "@images/back.svg";
 
 const BtnBack = styled(motion.button)`
+  position: absolute;
+  top: 53px;
   float: left;
   width: 40px;
   height: 41px;
@@ -22,6 +24,7 @@ const BtnBack = styled(motion.button)`
   background-color: white;
   color: ${({ theme }) => theme.text.main};
   object-fit: cover;
+  z-index: 3;
 
   img {
     width: 30px;

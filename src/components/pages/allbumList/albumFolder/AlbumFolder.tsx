@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import iconSVG from "@images/icon2.svg";
-import { motion } from "framer-motion";
+import { AppUrlsEnum } from "@const";
 
 interface IAlbumFolderProps {
   id: number;
@@ -16,15 +16,11 @@ export const AlbumFolder: React.FC<IAlbumFolderProps> = (props) => {
   const pickAlbumHandler = (event: React.MouseEvent<HTMLDivElement>) => {
     const div = event.currentTarget;
     const albumName = div.getAttribute("data-album-name");
-    navigator(`./${albumName!.toLowerCase()}`);
+
+    navigator("../" + AppUrlsEnum.ALBUM_PAGE + `/${albumName!.toLowerCase()}`);
   };
   return (
-    <Album
-      onClick={(e) => pickAlbumHandler(e)}
-      data-album-name={props.name}
-      whileHover={{ scale: 1.04 }}
-      whileTap={{ scale: 0.97, rotate: [0, 0, 3, -3, 0] }}
-    >
+    <Album onClick={(e) => pickAlbumHandler(e)} data-album-name={props.name}>
       <AlbumIcon>
         <img src={props.icon ? props.icon : iconSVG} alt="folderIco.png" />
       </AlbumIcon>
@@ -37,10 +33,10 @@ export const AlbumFolder: React.FC<IAlbumFolderProps> = (props) => {
   );
 };
 
-const Album = styled(motion.div)`
+const Album = styled.div`
   width: 345px;
   height: 64px;
-  margin-top: 15px;
+  margin: 15px auto 0px;
   padding: 10px;
   box-sizing: border-box;
   display: flex;
@@ -60,6 +56,7 @@ const AlbumIcon = styled.div`
   height: 40px;
   margin: 0px 30px 0px 5px;
   object-fit: contain;
+
   img {
     width: 40px;
     height: 40px;

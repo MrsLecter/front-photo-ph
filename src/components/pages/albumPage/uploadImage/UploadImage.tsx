@@ -16,6 +16,7 @@ import deleteSVG from "@images/delete.svg";
 import approvedSVG from "@images/approved.svg";
 import selectSVG from "@images/select.svg";
 import requestHandler from "@/api/fetch-request-handler";
+import { AppUrlsEnum } from "@const";
 
 const UploadImage: React.FC<{ albumName: string }> = ({ albumName }) => {
   const { accessToken } = useAppSelector((store) => store.userReducer);
@@ -26,20 +27,10 @@ const UploadImage: React.FC<{ albumName: string }> = ({ albumName }) => {
   const navigate = useNavigate();
 
   const addImageHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // const imagesArray:any[] = [];
-    // const reader = new FileReader();
-    // for(let i =0; i < event.target.files!.length; i++){
-    //   reader.addEventListener("load", () => {
-    //     imagesArray.push(reader.result);
-    //   });
-    //   reader.readAsDataURL(event.target.files![i]);
-    // }
-    console.log("add click");
     const imagesTarget = event.target.files;
-    console.log("imagesTarget", imagesTarget);
+
     setFiles(Array.from(imagesTarget!));
     const imagesArray = Array.from(imagesTarget!).map((img) => {
-      console.log(img);
       return URL.createObjectURL(img);
     });
     setDownloadList((prev) => [...prev, ...imagesArray]);
@@ -53,46 +44,19 @@ const UploadImage: React.FC<{ albumName: string }> = ({ albumName }) => {
     event: React.ChangeEvent<HTMLInputElement>,
     index: number
   ) => {
-    console.log("click", index, event.target.value);
     ownersList[index] = event.target.value;
   };
 
   const confirmClickHandler = () => {
-    console.log("confirm");
-    navigate(-1);
+    navigate("../");
   };
 
   const submitFormHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("submit");
-    console.log("downloadList", downloadList);
-
-    //     console.log("after reader: ", blobToBase64(downloadList[0]));
-    // console.log("form submit", downloadList);
-    // console.log("owners list", ownersList);
-
-    // const shippingData = [];
-    // for (let i = 0; i < downloadList.length; i++) {
-    //   shippingData[i] = {
-    //     photo_url: downloadList[i],
-    //     owners: ownersList[i] || "default",
-    //   };
-    // }
-    // console.log(shippingData, "downloadList", downloadList);
-
-    // let formData = new FormData();
-    // formData.append("album", albumName);
-    // for (let j = 0; j < downloadList.length; j++) {
-    //   var res = await fetch(downloadList[j]);
-    //   var blob = await res.blob();
-    //   formData.append("photos", blob);
-    // }
     let formData = new FormData();
     formData.append("album", albumName);
-    console.log("inputFiles", inputfiles);
     if (inputfiles) {
       let ownersData = "";
-      console.log("owners list", ownersList);
       for (let i = 0; i < inputfiles.length; i++) {
         formData.append("photos", inputfiles[i]);
         ownersData += ownersList[i] || "default";
@@ -100,19 +64,16 @@ const UploadImage: React.FC<{ albumName: string }> = ({ albumName }) => {
           ownersData += "*";
         }
       }
-      console.log("ownersData : ", ownersData);
       formData.set("users", ownersData);
     }
     const response: any = await requestHandler.postPhotos(
       accessToken,
       formData
     );
-    console.log("post photos response: ", response);
     if (response.status === 201) {
-      console.log("status 201");
-      navigate(`/albums`);
+      navigate("../" + AppUrlsEnum.ALBUM_PAGE);
     } else {
-      navigate(`/info/${"photo not sent! Try again!"}`);
+      navigate("../" + AppUrlsEnum.INFO + `/${"photo not sent! Try again!"}`);
     }
   };
 

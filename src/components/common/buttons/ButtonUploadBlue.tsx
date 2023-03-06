@@ -2,7 +2,7 @@ import styled from "styled-components";
 import uploadSVG from "@images/upload-white.svg";
 import { motion } from "framer-motion";
 
-export const ButtonUploadBlue: React.FC<ButtonUploadProps> = ({
+export const ButtonUploadBlue: React.FC<IButtonUploadProps> = ({
   buttonHandler,
 }) => {
   return (
@@ -13,7 +13,7 @@ export const ButtonUploadBlue: React.FC<ButtonUploadProps> = ({
   );
 };
 
-interface ButtonUploadProps {
+interface IButtonUploadProps {
   buttonHandler: React.MouseEventHandler<HTMLButtonElement>;
 }
 

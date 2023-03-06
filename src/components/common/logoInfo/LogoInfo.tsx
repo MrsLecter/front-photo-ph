@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import logoInfoSVG from "@images/logo-info.svg";
 import { motion, Variants } from "framer-motion";
 
 const LogoInfoElem = styled.div`
