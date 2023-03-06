@@ -23,7 +23,7 @@ export const AlbumList: React.FC = () => {
   const navigate = useNavigate();
   const navigation = useNavigation();
   const dispatch = useAppDispatch();
-  const { enroll } = userSlice.actions;
+  const { enroll, logout } = userSlice.actions;
   const { accessToken, refreshToken, expiresIn } = useAppSelector(
     (state) => state.userReducer
   );
@@ -52,6 +52,8 @@ export const AlbumList: React.FC = () => {
             navigate("../" + AppUrlsEnum.LOGIN);
           }
         } else {
+          dispatch(logout());
+          localStorageHandler.deletePhotographersData();
           navigate("../" + AppUrlsEnum.INFO + `/${message}`);
         }
       } catch (err: unknown) {
@@ -60,19 +62,26 @@ export const AlbumList: React.FC = () => {
         setIsLoading(false);
       }
     };
-
+    // console.log(
+    //   "localStorageHandler.isPhotographerExist()",
+    //   localStorageHandler.isPhotographerExist()
+    // );
     if (!localStorageHandler.isPhotographerExist() && !accessToken) {
       navigate("../" + AppUrlsEnum.LOGIN);
     }
-    if (!accessToken) {
+    if (localStorageHandler.isPhotographerExist() && !accessToken) {
       const newTokens = localStorageHandler.getPhotographersData();
-      dispatch(
-        enroll({
-          accessToken: newTokens.accessToken,
-          refreshToken: newTokens.refreshToken,
-        })
-      );
-      getAlbumData(newTokens.accessToken);
+      if (typeof newTokens !== "undefined") {
+        dispatch(
+          enroll({
+            accessToken: newTokens.accessToken,
+            refreshToken: newTokens.refreshToken,
+          })
+        );
+        getAlbumData(newTokens.accessToken);
+      } else {
+        navigate("../" + AppUrlsEnum.LOGIN);
+      }
     }
     if (accessToken && localStorageHandler.isPhotographerExist()) {
       getAlbumData(accessToken);

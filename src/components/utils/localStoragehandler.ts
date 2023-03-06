@@ -12,19 +12,21 @@ class LocalStorageHandler {
     localStorage.setItem("photographer", JSON.stringify(photogrepherData));
   }
 
-  public getPhotographersData(): ILocalStorageData {
+  public getPhotographersData(): ILocalStorageData | undefined {
     const photographerData = localStorage.getItem("photographer");
 
     if (photographerData) {
       const photographerDataObject = JSON.parse(photographerData);
       return photographerDataObject;
-    } else {
-      throw Error("Photographer data in local storage is null");
     }
   }
 
   public isPhotographerExist() {
     return !!localStorage.getItem("photographer");
+  }
+
+  public deletePhotographersData() {
+    localStorage.removeItem("photographer");
   }
 }
 
