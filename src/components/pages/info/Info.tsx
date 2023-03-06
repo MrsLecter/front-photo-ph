@@ -8,6 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { AppUrlsEnum } from "@const";
 import WrapperContent from "@wrappers/wrapperContent/WrapperContent";
+import WrapperCenter from "@wrappers/wrapperCenter/wrapperCenter";
 
 const InfoPage = styled.div`
   width: 100%;
@@ -42,20 +43,22 @@ export const Info: React.FC = () => {
   return (
     <WrapperPage>
       <Logo />
-      <WrapperContent>
-        <LogoInfo />
-        <Header label={"🤔 Something happened"} />
-        <InfoPage>
-          <InfoPageWrapper>
-            <InfoPageMessage>
-              {message
-                ? message
-                : "Oops! Unexpected error! Refresh page to continue"}
-            </InfoPageMessage>
-            <ButtonSubmit label={"Go back"} buttonHandler={goBackHandler} />
-          </InfoPageWrapper>
-        </InfoPage>
-      </WrapperContent>
+      <WrapperCenter>
+        <WrapperContent>
+          <LogoInfo />
+          <Header label={"🤔 Something happened"} />
+          <InfoPage>
+            <InfoPageWrapper>
+              <InfoPageMessage>
+                {message
+                  ? message
+                  : "Oops! Unexpected error! Refresh page to continue"}
+              </InfoPageMessage>
+              <ButtonSubmit label={"Go back"} buttonHandler={goBackHandler} />
+            </InfoPageWrapper>
+          </InfoPage>
+        </WrapperContent>
+      </WrapperCenter>
     </WrapperPage>
   );
 };

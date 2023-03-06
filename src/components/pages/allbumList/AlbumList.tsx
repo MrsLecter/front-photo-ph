@@ -62,10 +62,6 @@ export const AlbumList: React.FC = () => {
         setIsLoading(false);
       }
     };
-    // console.log(
-    //   "localStorageHandler.isPhotographerExist()",
-    //   localStorageHandler.isPhotographerExist()
-    // );
     if (!localStorageHandler.isPhotographerExist() && !accessToken) {
       navigate("../" + AppUrlsEnum.LOGIN);
     }

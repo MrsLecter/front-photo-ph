@@ -7,6 +7,7 @@ interface IWrapperCenterProps {
 const StyledWrapperCenter = styled.div`
   box-sizing: border-box;
   width: 100vw;
+  height: calc(100vh - 60px);
   margin: 0 auto;
   display: flex;
   justify-content: center;

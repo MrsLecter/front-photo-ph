@@ -16,6 +16,7 @@ import ButtonSubmit from "@common/buttons/ButtonSubmit";
 import requestHandler from "@/api/fetch-request-handler";
 import { IInfoResponse } from "@/api/fetch-requests-handler.types";
 import WrapperContent from "@wrappers/wrapperContent/WrapperContent";
+import WrapperCenter from "@wrappers/wrapperCenter/wrapperCenter";
 
 export const AlbumCreate: React.FC = () => {
   const { accessToken } = useAppSelector((store) => store.userReducer);
@@ -77,35 +78,37 @@ export const AlbumCreate: React.FC = () => {
       {navigation.state === "loading" ? <LoadingBlock /> : <></>}
       <Logo />
       <ButtonClose />
-      <WrapperContent>
-        <FormMain onFormSubmit={onFormSubmit} formName={"addAlbumForm"}>
-          <FormLabel text={"Name"} />
-          <FormInput
-            onChangeHandler={nameChangeHandler}
-            inputType="text"
-            inputName="name"
-            inputIsValid={nameIsValid}
-            inputValue={name}
-          />
-          <FormLabel text={"Location"} />
-          <FormInput
-            onChangeHandler={locationChangeHandler}
-            inputType="text"
-            inputName="location"
-            inputIsValid={locationIsValid}
-            inputValue={location}
-          />
-          <FormLabel text="Datapicker" />
-          <FormInput
-            onChangeHandler={datapickerChangeHandler}
-            inputType="date"
-            inputName="datapicker"
-            inputIsValid={datapickerIsValid}
-            inputValue={datapicker}
-          />
-          <ButtonSubmit label={"Save"} />
-        </FormMain>
-      </WrapperContent>
+      <WrapperCenter>
+        <WrapperContent>
+          <FormMain onFormSubmit={onFormSubmit} formName={"addAlbumForm"}>
+            <FormLabel text={"Name"} />
+            <FormInput
+              onChangeHandler={nameChangeHandler}
+              inputType="text"
+              inputName="name"
+              inputIsValid={nameIsValid}
+              inputValue={name}
+            />
+            <FormLabel text={"Location"} />
+            <FormInput
+              onChangeHandler={locationChangeHandler}
+              inputType="text"
+              inputName="location"
+              inputIsValid={locationIsValid}
+              inputValue={location}
+            />
+            <FormLabel text="Datapicker" />
+            <FormInput
+              onChangeHandler={datapickerChangeHandler}
+              inputType="date"
+              inputName="datapicker"
+              inputIsValid={datapickerIsValid}
+              inputValue={datapicker}
+            />
+            <ButtonSubmit label={"Save"} />
+          </FormMain>
+        </WrapperContent>
+      </WrapperCenter>
     </WrapperPage>
   );
 };

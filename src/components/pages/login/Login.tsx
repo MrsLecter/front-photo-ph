@@ -23,6 +23,7 @@ import requestHandler from "@/api/fetch-request-handler";
 import { ILoginResponse } from "@/api/fetch-requests-handler.types";
 import WrapperContent from "@wrappers/wrapperContent/WrapperContent";
 import localStorageHandler from "@/components/utils/localStoragehandler";
+import WrapperCenter from "@wrappers/wrapperCenter/wrapperCenter";
 
 export const Login: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -90,28 +91,30 @@ export const Login: React.FC = () => {
         {isLoading ? <LoadingBlock /> : <></>}
         {navigation.state === "loading" ? <LoadingBlock /> : <></>}
         <Logo />
-        <WrapperContent>
-          <Header label="Let’s get started" />
-          <FormMain onFormSubmit={onFormSubmit} formName={"signupform"}>
-            <FormLabel text={"Login:"} />
-            <FormInput
-              inputIsValid={loginIsValid}
-              inputType={"text"}
-              inputName={"login"}
-              inputValue={login}
-              onChangeHandler={loginChangeHandler}
-            />
-            <FormLabel text={"Password:"} />
-            <FormInput
-              inputIsValid={passwordIsValid}
-              inputType={"password"}
-              inputName={"password"}
-              inputValue={password}
-              onChangeHandler={passwordChangeHandler}
-            />
-            <ButtonSubmit label={"Login"} />
-          </FormMain>
-        </WrapperContent>
+        <WrapperCenter>
+          <WrapperContent>
+            <Header label="Let’s get started" />
+            <FormMain onFormSubmit={onFormSubmit} formName={"signupform"}>
+              <FormLabel text={"Login:"} />
+              <FormInput
+                inputIsValid={loginIsValid}
+                inputType={"text"}
+                inputName={"login"}
+                inputValue={login}
+                onChangeHandler={loginChangeHandler}
+              />
+              <FormLabel text={"Password:"} />
+              <FormInput
+                inputIsValid={passwordIsValid}
+                inputType={"password"}
+                inputName={"password"}
+                inputValue={password}
+                onChangeHandler={passwordChangeHandler}
+              />
+              <ButtonSubmit label={"Login"} />
+            </FormMain>
+          </WrapperContent>
+        </WrapperCenter>
       </WrapperPage>
     </div>
   );

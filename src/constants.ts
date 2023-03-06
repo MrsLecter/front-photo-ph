@@ -16,7 +16,7 @@ export const REQUEST_HEADERS = {
 };
 
 export const REQUEST_HEADERS_GET = {
-  "Access-Control-Allow-Origin": "http://localhost:3000",
+  "Access-Control-Allow-Origin": "http://localhost:3002",
   "Access-Control-Allow-Methods": "GET",
   "Access-Control-Allow-Headers":
     "Content-Type, Authorization, X-Requested-With",
