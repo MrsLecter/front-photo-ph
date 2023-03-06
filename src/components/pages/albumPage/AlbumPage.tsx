@@ -1,8 +1,7 @@
 import { userSlice } from "@/components/store/reducers/userSlice";
 import { useAppSelector } from "@hooks/reducers-hooks";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate, useNavigation, useParams } from "react-router-dom";
-import { ALBUM_URL } from "@const";
 import LoadingBlock from "@common/loadingBlock/LoadingBlock";
 import WrapperModal from "@wrappers/wrapperModal/WrapperModal";
 import { PickedImage } from "./pickedImage/PickedImage";
@@ -10,22 +9,10 @@ import UploadImage from "./uploadImage/UploadImage";
 import WrapperPage from "@wrappers/wrapperPage/WrapperPage";
 import Logo from "@common/logo/Logo";
 import ButtonBack from "@common/buttons/ButtonBack";
-import { AlbumPanel } from "./albumPanel/AlbumPanel";
-import {
-  WrapperImages,
-  WrapperImagesItem,
-} from "@wrappers/wrapperImages/WrapperImages";
-import { EmptyDataStub } from "@/components/emptyDataStub/EmptyDataStub";
-import requestHandler from "@/api/fetch-request-handler";
-import {
-  IAlbumsPhotoResponse,
-  IPhotoObject,
-  IInfoResponse,
-} from "@/api/fetch-requests-handler.types";
+import { IPhotoObject } from "@/api/fetch-requests-handler.types";
 import { ButtonUploadBlue } from "@common/buttons/ButtonUploadBlue";
-import ButtonSubmit from "@common/buttons/ButtonSubmit";
-import { ButtonUpload } from "@common/buttons/ButtonUpload";
 import WrapperContent from "@wrappers/wrapperContent/WrapperContent";
+import WrapperCenter from "@wrappers/wrapperCenter/wrapperCenter";
 
 export const AlbumPage: React.FC = () => {
   let { albumName } = useParams();
@@ -86,9 +73,11 @@ export const AlbumPage: React.FC = () => {
       <WrapperPage>
         <Logo />
         <ButtonBack />
-        <WrapperContent>
-          <ButtonUploadBlue buttonHandler={() => uploadImageHandler()} />
-        </WrapperContent>
+        <WrapperCenter>
+          <WrapperContent>
+            <ButtonUploadBlue buttonHandler={() => uploadImageHandler()} />
+          </WrapperContent>
+        </WrapperCenter>
       </WrapperPage>
     </>
   );

@@ -12,6 +12,7 @@ import LoadingBlock from "@common/loadingBlock/LoadingBlock";
 import Logo from "@common/logo/Logo";
 import { ALBUMS_URL, AppUrlsEnum } from "@const";
 import { useAppDispatch, useAppSelector } from "@hooks/reducers-hooks";
+import WrapperCenter from "@wrappers/wrapperCenter/wrapperCenter";
 import WrapperContent from "@wrappers/wrapperContent/WrapperContent";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useNavigation } from "react-router-dom";
