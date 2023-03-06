@@ -13,9 +13,7 @@ const Logo: React.FC = () => {
 };
 
 const StyledLogo = styled.div`
-  position: absolute;
   box-sizing: border-box;
-  top: 0px;
   width: 100%;
   height: 55px;
   margin: 0px;
