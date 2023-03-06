@@ -3,7 +3,6 @@ import { useAppSelector } from "../hooks/reducers-hooks";
 import { AlbumCreate } from "../pages/albumCreate/AlbumCreate";
 import { AlbumPage } from "../pages/albumPage/AlbumPage";
 import { AlbumList } from "../pages/allbumList/AlbumList";
-import Home from "../pages/home/Home";
 import { Info } from "../pages/info/Info";
 import { Policy } from "../pages/legalInfo/Policy";
 import { Terms } from "../pages/legalInfo/Terms";
