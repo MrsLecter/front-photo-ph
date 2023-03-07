@@ -1,5 +1,4 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import { useAppSelector } from "../hooks/reducers-hooks";
 import { AlbumCreate } from "../pages/albumCreate/AlbumCreate";
 import { AlbumPage } from "../pages/albumPage/AlbumPage";
 import { AlbumList } from "../pages/allbumList/AlbumList";
@@ -9,6 +8,7 @@ import { Terms } from "../pages/legalInfo/Terms";
 import { Login } from "../pages/login/Login";
 import NotFound from "../pages/notFound/NotFound";
 import { Registration } from "../pages/registration/Registration";
+import localStorageHandler from "../utils/local-storage-handler";
 
 const RequireAuth = ({
   children,
@@ -17,8 +17,11 @@ const RequireAuth = ({
   redirectTo: string;
   children: JSX.Element;
 }) => {
-  const { accessToken } = useAppSelector((store) => store.userReducer);
-  return !!accessToken ? children : <Navigate to={redirectTo} />;
+  return localStorageHandler.isPhotographerExist() ? (
+    children
+  ) : (
+    <Navigate to={redirectTo} />
+  );
 };
 
 const albums_route_group_protected = [

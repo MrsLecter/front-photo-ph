@@ -1,7 +1,19 @@
 import styled from "styled-components";
-import { motion } from "framer-motion";
 
-export const BtnSubmit = styled(motion.button)`
+interface IBtnSubmitProps {
+  label: string;
+  buttonHandler?: (e: React.MouseEvent) => void;
+}
+
+const ButtonSubmit: React.FC<IBtnSubmitProps> = ({ label, buttonHandler }) => {
+  return (
+    <BtnSubmit onClick={buttonHandler} type="submit">
+      {label}
+    </BtnSubmit>
+  );
+};
+
+export const BtnSubmit = styled.button`
   width: 345px;
   height: 50px;
   margin: 0 auto;
@@ -19,18 +31,5 @@ export const BtnSubmit = styled(motion.button)`
     background-color: ${({ theme }) => theme.button.background_hovered_light};
   }
 `;
-
-interface IBtnSubmitProps {
-  label: string;
-  buttonHandler?: (e: React.MouseEvent) => void;
-}
-
-const ButtonSubmit: React.FC<IBtnSubmitProps> = ({ label, buttonHandler }) => {
-  return (
-    <BtnSubmit onClick={buttonHandler} type="submit" whileTap={{ scale: 0.9 }}>
-      {label}
-    </BtnSubmit>
-  );
-};
 
 export default ButtonSubmit;

@@ -1,5 +1,4 @@
 import { AppUrlsEnum, LOGIN_REGEXP } from "@const";
-import { useAppSelector } from "@hooks/reducers-hooks";
 import { useInput } from "@hooks/use-input";
 import { useNavigate, useNavigation } from "react-router-dom";
 import WrapperPage from "@wrappers/wrapperPage/WrapperPage";
@@ -7,19 +6,16 @@ import Logo from "@common/logo/Logo";
 import LoadingBlock from "@common/loadingBlock/LoadingBlock";
 import ButtonClose from "@common/buttons/ButtonClose";
 import {
-  FormErrorMessage,
   FormInput,
   FormLabel,
   FormMain,
 } from "@common/formElements/FormElements";
 import ButtonSubmit from "@common/buttons/ButtonSubmit";
-import requestHandler from "@/api/fetch-request-handler";
-import { IInfoResponse } from "@/api/fetch-requests-handler.types";
 import WrapperContent from "@wrappers/wrapperContent/WrapperContent";
 import WrapperCenter from "@wrappers/wrapperCenter/wrapperCenter";
+import albumsService from "@/api/albums-service";
 
 export const AlbumCreate: React.FC = () => {
-  const { accessToken } = useAppSelector((store) => store.userReducer);
   const navigation = useNavigation();
   const navigate = useNavigate();
 
@@ -52,8 +48,7 @@ export const AlbumCreate: React.FC = () => {
         alert("Some fields are invalid!");
       }
       try {
-        const response: IInfoResponse = await requestHandler.postAlbum({
-          accessToken,
+        const response = await albumsService.postAlbum({
           albumObject: {
             albumlocation: location,
             albumname: name,

@@ -1,4 +1,3 @@
-import { useAppSelector } from "@hooks/reducers-hooks";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -15,11 +14,10 @@ import {
 import deleteSVG from "@images/delete.svg";
 import approvedSVG from "@images/approved.svg";
 import selectSVG from "@images/select.svg";
-import requestHandler from "@/api/fetch-request-handler";
 import { AppUrlsEnum } from "@const";
+import albumsService from "@/api/albums-service";
 
 const UploadImage: React.FC<{ albumName: string }> = ({ albumName }) => {
-  const { accessToken } = useAppSelector((store) => store.userReducer);
   const [downloadList, setDownloadList] = useState<string[]>([]);
   const [images, setImages] = useState<FileList | null>();
   const [ownersList, setOwnersList] = useState<string[]>([]);
@@ -66,11 +64,8 @@ const UploadImage: React.FC<{ albumName: string }> = ({ albumName }) => {
       }
       formData.set("users", ownersData);
     }
-    const response: any = await requestHandler.postPhotos(
-      accessToken,
-      formData
-    );
-    if (response.status === 201) {
+    const postPhotosResponse = await albumsService.postPhotos(formData);
+    if (postPhotosResponse.status === 201) {
       navigate("../" + AppUrlsEnum.ALBUM_PAGE);
     } else {
       navigate("../" + AppUrlsEnum.INFO + `/${"photo not sent! Try again!"}`);

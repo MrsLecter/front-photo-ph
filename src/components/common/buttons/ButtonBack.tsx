@@ -1,10 +1,21 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { motion } from "framer-motion";
 
 import backSVG from "@images/back.svg";
 
-const BtnBack = styled(motion.button)`
+const ButtonBack: React.FC = () => {
+  const navigate = useNavigate();
+  const backToAlbumHandler = () => {
+    navigate(-1);
+  };
+  return (
+    <BtnBack onClick={backToAlbumHandler} type="button">
+      <img src={backSVG} alt="back.svg" />
+    </BtnBack>
+  );
+};
+
+const BtnBack = styled.button`
   position: absolute;
   top: 53px;
   float: left;
@@ -36,21 +47,5 @@ const BtnBack = styled(motion.button)`
     background-color: ${({ theme }) => theme.input.border};
   }
 `;
-
-const ButtonBack: React.FC = () => {
-  const navigate = useNavigate();
-  const backToAlbumHandler = () => {
-    navigate(-1);
-  };
-  return (
-    <BtnBack
-      onClick={backToAlbumHandler}
-      type="button"
-      whileTap={{ scale: 0.9 }}
-    >
-      <img src={backSVG} alt="back.svg" />
-    </BtnBack>
-  );
-};
 
 export default ButtonBack;

@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+const WrapperInfo: React.FC<IWrapperInfoProps> = ({ children }) => {
+  return <StyledWrapperInfo>{children}</StyledWrapperInfo>;
+};
+
 interface IWrapperInfoProps {
   children: React.ReactNode;
 }
@@ -34,9 +38,5 @@ const StyledWrapperInfo = styled.div`
     line-height: 21.6px;
   }
 `;
-
-const WrapperInfo: React.FC<IWrapperInfoProps> = ({ children }) => {
-  return <StyledWrapperInfo>{children}</StyledWrapperInfo>;
-};
 
 export default WrapperInfo;

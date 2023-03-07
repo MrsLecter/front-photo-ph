@@ -1,10 +1,20 @@
 import closeSVG from "../../../assets/images/close.svg";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { motion } from "framer-motion";
-import { AppUrlsEnum } from "@const";
 
-const BtnClose = styled(motion.button)`
+const ButtonClose: React.FC = () => {
+  const navigate = useNavigate();
+  const closeModalHandler = () => {
+    navigate("../");
+  };
+  return (
+    <BtnClose onClick={closeModalHandler} type="button">
+      <img src={closeSVG} alt="close.svg" />
+    </BtnClose>
+  );
+};
+
+const BtnClose = styled.button`
   position: absolute;
   top: 54px;
   float: left;
@@ -35,21 +45,5 @@ const BtnClose = styled(motion.button)`
     background-color: ${({ theme }) => theme.input.border};
   }
 `;
-
-const ButtonClose: React.FC = () => {
-  const navigate = useNavigate();
-  const closeModalHandler = () => {
-    navigate("../");
-  };
-  return (
-    <BtnClose
-      onClick={closeModalHandler}
-      type="button"
-      whileTap={{ scale: 0.9 }}
-    >
-      <img src={closeSVG} alt="close.svg" />
-    </BtnClose>
-  );
-};
 
 export default ButtonClose;

@@ -1,9 +1,29 @@
 import { useNavigate } from "react-router-dom";
-
 import WrapperPage from "@/components/wrappers/wrapperPage/WrapperPage";
 import logoInfoSVG from "@images/camera-disabled.png";
 import styled from "styled-components";
 import WrapperCenter from "@wrappers/wrapperCenter/wrapperCenter";
+
+const NotFound: React.FC = () => {
+  const navigation = useNavigate();
+  return (
+    <WrapperPage>
+      <WrapperCenter>
+        <NotFoundPage>
+          <img src={logoInfoSVG} alt="logoInfo.svg" />
+          <h1>Oops!</h1>
+          <NotFoundPageMessage>
+            the page you were looking doesent exist
+          </NotFoundPageMessage>
+
+          <NotFoundPageBtn onClick={() => navigation("../")}>
+            Go Home
+          </NotFoundPageBtn>
+        </NotFoundPage>
+      </WrapperCenter>
+    </WrapperPage>
+  );
+};
 
 const NotFoundPage = styled.div`
   width: 375px;
@@ -51,26 +71,5 @@ const NotFoundPageBtn = styled.button`
     color: white;
   }
 `;
-
-const NotFound: React.FC = () => {
-  const navigation = useNavigate();
-  return (
-    <WrapperPage>
-      <WrapperCenter>
-        <NotFoundPage>
-          <img src={logoInfoSVG} alt="logoInfo.svg" />
-          <h1>Oops!</h1>
-          <NotFoundPageMessage>
-            the page you were looking doesent exist
-          </NotFoundPageMessage>
-
-          <NotFoundPageBtn onClick={() => navigation("../")}>
-            Go Home
-          </NotFoundPageBtn>
-        </NotFoundPage>
-      </WrapperCenter>
-    </WrapperPage>
-  );
-};
 
 export default NotFound;

@@ -5,9 +5,9 @@ export const FULLNAME_REGEXP =
   /(^[A-Za-z]{3,16})([ ]{0,1})([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{3,16})?([ ]{0,1})?([A-Za-z]{2,16})/;
 
 export const TWENTY_FOUR_HOURS_IN_MS = 86400000;
-export const THIRTY_MINUTES = 1800000;
+export const FIVE_MINUTES = 300000;
 
-export const REQUEST_HEADERS = {
+export const REQUEST_HEADERS_POST = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "POST",
   "Access-Control-Allow-Headers":
@@ -16,7 +16,7 @@ export const REQUEST_HEADERS = {
 };
 
 export const REQUEST_HEADERS_GET = {
-  "Access-Control-Allow-Origin": "http://localhost:3002",
+  "Access-Control-Allow-Origin": "http://localhost:3000",
   "Access-Control-Allow-Methods": "GET",
   "Access-Control-Allow-Headers":
     "Content-Type, Authorization, X-Requested-With",
@@ -31,7 +31,7 @@ export const REQUEST_HEADERS_POST_PHOTOS = {
   "Content-Security-Policy": "default-src self",
 };
 
-export const BASIC_URL = `https://f9b5-5-255-182-125.eu.ngrok.io`;
+export const BASIC_URL = `https://9724-5-255-182-125.eu.ngrok.io`;
 export const REGISTRATION_URL = `${BASIC_URL}/ph-register`;
 export const LOGIN_URL = `${BASIC_URL}/ph-login`;
 export const REFRESH_URL = `${BASIC_URL}/refresh-ph-tokens`;

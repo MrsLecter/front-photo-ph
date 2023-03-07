@@ -1,12 +1,11 @@
 import styled from "styled-components";
 import uploadSVG from "@images/upload.svg";
-import { motion } from "framer-motion";
 
 export const ButtonUpload: React.FC<IButtonUploadProps> = ({
   buttonHandler,
 }) => {
   return (
-    <BtnUpload onClick={buttonHandler} type="button" whileTap={{ scale: 0.9 }}>
+    <BtnUpload onClick={buttonHandler} type="button">
       <img src={uploadSVG} alt="upload.svg" />
       Upload
     </BtnUpload>
@@ -17,7 +16,7 @@ interface IButtonUploadProps {
   buttonHandler: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-const BtnUpload = styled(motion.button)`
+const BtnUpload = styled.button`
   width: 120px;
   height: 40px;
   display: flex;

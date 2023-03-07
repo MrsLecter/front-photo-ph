@@ -1,11 +1,4 @@
-import { userSlice } from "@/components/store/reducers/userSlice";
-import {
-  LOGIN_REGEXP,
-  PASSWORD_REGEXP,
-  TWENTY_FOUR_HOURS_IN_MS,
-  AppUrlsEnum,
-} from "@const";
-import { useAppDispatch } from "@hooks/reducers-hooks";
+import { LOGIN_REGEXP, PASSWORD_REGEXP, AppUrlsEnum } from "@const";
 import { useInput } from "@hooks/use-input";
 import { useState } from "react";
 import { useNavigate, useNavigation } from "react-router-dom";
@@ -19,17 +12,15 @@ import {
 } from "@common/formElements/FormElements";
 import WrapperPage from "@wrappers/wrapperPage/WrapperPage";
 import ButtonSubmit from "@common/buttons/ButtonSubmit";
-import requestHandler from "@/api/fetch-request-handler";
-import { ILoginResponse } from "@/api/fetch-requests-handler.types";
 import WrapperContent from "@wrappers/wrapperContent/WrapperContent";
-import localStorageHandler from "@/components/utils/localStoragehandler";
+
 import WrapperCenter from "@wrappers/wrapperCenter/wrapperCenter";
+import localStorageHandler from "@/components/utils/local-storage-handler";
+import userService from "@/api/user-service";
 
 export const Login: React.FC = () => {
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const navigation = useNavigation();
-  const { enroll } = userSlice.actions;
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const {
@@ -54,7 +45,7 @@ export const Login: React.FC = () => {
     if (loginIsValid && passwordIsValid) {
       setIsLoading(true);
       try {
-        const loginResponse: ILoginResponse = await requestHandler.login({
+        const loginResponse = await userService.login({
           login,
           password,
         });
@@ -63,15 +54,7 @@ export const Login: React.FC = () => {
           localStorageHandler.setPhotographerData({
             accessToken: token,
             refreshToken: refreshtoken,
-            expiresIn: new Date().getTime() + TWENTY_FOUR_HOURS_IN_MS,
           });
-          dispatch(
-            enroll({
-              accessToken: token,
-              refreshToken: refreshtoken,
-            })
-          );
-
           navigate("../");
         } else if (status === 406) {
           navigate("../" + AppUrlsEnum.REG);

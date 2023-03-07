@@ -3,6 +3,18 @@ import styled from "styled-components";
 import plusSVG from "@images/plus.svg";
 import { AppUrlsEnum } from "@const";
 
+const ButtonAdd: React.FC = () => {
+  const navigate = useNavigate();
+  const addAlbumHandler = () => {
+    navigate("../" + AppUrlsEnum.ALBUM_CREATE);
+  };
+  return (
+    <StyledButtonAdd onClick={addAlbumHandler} type="button">
+      <img src={plusSVG} alt="plus.svg" />
+    </StyledButtonAdd>
+  );
+};
+
 const StyledButtonAdd = styled.button`
   position: absolute;
   top: 53px;
@@ -36,17 +48,5 @@ const StyledButtonAdd = styled.button`
     background-color: ${({ theme }) => theme.input.border};
   }
 `;
-
-const ButtonAdd: React.FC = () => {
-  const navigate = useNavigate();
-  const addAlbumHandler = () => {
-    navigate("../" + AppUrlsEnum.ALBUM_CREATE);
-  };
-  return (
-    <StyledButtonAdd onClick={addAlbumHandler} type="button">
-      <img src={plusSVG} alt="plus.svg" />
-    </StyledButtonAdd>
-  );
-};
 
 export default ButtonAdd;

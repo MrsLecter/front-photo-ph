@@ -6,7 +6,6 @@ interface IWrapperContentProps {
 
 const StyledWrapperContent = styled.div`
   overflow: hidden;
-  
 `;
 
 const WrapperContent: React.FC<IWrapperContentProps> = ({ children }) => {

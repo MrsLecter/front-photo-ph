@@ -19,9 +19,8 @@ import {
   FormMain,
 } from "@common/formElements/FormElements";
 import ButtonSubmit from "@common/buttons/ButtonSubmit";
-import requestHandler from "@/api/fetch-request-handler";
-import { IInfoResponse } from "@/api/fetch-requests-handler.types";
 import WrapperContent from "@wrappers/wrapperContent/WrapperContent";
+import userService from "@/api/user-service";
 
 export const Registration: React.FC = () => {
   const navigate = useNavigate();
@@ -64,9 +63,12 @@ export const Registration: React.FC = () => {
     if (loginIsValid && passwordIsValid) {
       setIsLoading(true);
       try {
-        const registrationResponse: IInfoResponse =
-          await requestHandler.registration(login, password, email, fullname);
-
+        const registrationResponse = await userService.registration(
+          login,
+          password,
+          email,
+          fullname
+        );
         const { status, message } = registrationResponse;
         navigate("../" + AppUrlsEnum.INFO + `/${message}`);
       } catch (err: unknown) {
