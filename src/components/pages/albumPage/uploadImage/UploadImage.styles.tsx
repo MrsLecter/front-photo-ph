@@ -37,6 +37,12 @@ export const StyledSubmitBtn = styled.button`
     height: 20px;
     margin-right: 10px;
   }
+
+  &:hover {
+    color: ${({ theme }) => theme.swich_background};
+    cursor: pointer;
+    background-color: ${({ theme }) => theme.input.border};
+  }
 `;
 
 export const UploadImageElementBtnPanel = styled.div`

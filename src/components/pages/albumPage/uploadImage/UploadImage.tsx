@@ -17,10 +17,12 @@ import deleteSVG from "@images/delete.svg";
 import selectSVG from "@images/select.svg";
 import { AppUrlsEnum } from "@const";
 import albumsService from "@/api/albums-service";
+import LoadingBlock from "@common/loadingBlock/LoadingBlock";
 
 const UploadImage: React.FC<{ albumName: string }> = ({ albumName }) => {
   const [downloadList, setDownloadList] = useState<string[]>([]);
   const [images, setImages] = useState<FileList | null>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [ownersList, setOwnersList] = useState<string[]>([]);
   const [inputfiles, setFiles] = useState<File[]>();
   const navigate = useNavigate();
@@ -48,6 +50,8 @@ const UploadImage: React.FC<{ albumName: string }> = ({ albumName }) => {
 
   const submitFormHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    console.info("submitted...");
+    setIsLoading(true);
     let formData = new FormData();
     formData.append("album", albumName);
     if (inputfiles) {
@@ -62,6 +66,7 @@ const UploadImage: React.FC<{ albumName: string }> = ({ albumName }) => {
       formData.set("users", ownersData);
     }
     const postPhotosResponse = await albumsService.postPhotos(formData);
+    setIsLoading(false);
     if (postPhotosResponse.status === 201) {
       navigate("../");
     } else {
@@ -71,8 +76,8 @@ const UploadImage: React.FC<{ albumName: string }> = ({ albumName }) => {
 
   return (
     <UploadImageElement>
+      {isLoading && <LoadingBlock />}
       <UploadImageElementLogo>Upload your images</UploadImageElementLogo>
-
       <form name="photos" onSubmit={submitFormHandler} method="post">
         <BtnFormSubmit />
         <UploadImageElementBtnPanel>
