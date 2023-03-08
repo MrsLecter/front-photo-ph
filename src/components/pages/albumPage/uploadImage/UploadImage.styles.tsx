@@ -15,7 +15,32 @@ export const UploadImageElementLogo = styled.div`
   border: 1px solid #f1f0ec;
 `;
 
+export const StyledSubmitBtn = styled.button`
+  margin-tom: 4px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  border: 1px solid black;
+  border: none;
+  height: 40px;
+  font-family: "Futura";
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 23.08px;
+  background-color: white;
+  color: ${({ theme }) => theme.text.main};
+
+  img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+`;
+
 export const UploadImageElementBtnPanel = styled.div`
+  margin-top: -47px;
   padding: 10px;
   width: 345px;
   height: 55px;
@@ -24,40 +49,37 @@ export const UploadImageElementBtnPanel = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  button {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+  input {
+    visibility: hidden;
+    position: absolute;
+    z-index: -2;
     width: 120px;
-    border: 1px solid black;
-    border: none;
+    background-color: red;
     height: 40px;
-    font-family: "Futura";
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 23.08px;
-    background-color: white;
-    color: ${({ theme }) => theme.text.main};
-    img {
-      width: 20px;
-      height: 20px;
-      margin-right: 10px;
-    }
+  }
+
+  & > input:nth-child(1) {
+    visibility: visible;
+    // display: flex;
+    // flex-direction: row;
+    // align-items: center;
+    // justify-content: center;
+    // width: 120px;
+    // border: 1px solid black;
+    // border: none;
+    // height: 40px;
+    // font-family: "Futura";
+    // font-weight: 600;
+    // font-size: 18px;
+    // line-height: 23.08px;
+    // background-color: white;
+    // color: ${({ theme }) => theme.text.main};
   }
 
   button:hover {
     color: ${({ theme }) => theme.swich_background};
     cursor: pointer;
     background-color: ${({ theme }) => theme.input.border};
-  }
-
-  input {
-    visibility: hidden;
-    position: absolute;
-    z-index: -2;
-    width: 120px;
-    height: 40px;
   }
 
   label {

@@ -1,4 +1,11 @@
-import { CREATE_ALBUM_URL, REQUEST_HEADERS_POST, SEND_PHOTO_URL } from "@const";
+import localStorageHandler from "@/components/utils/local-storage-handler";
+import {
+  CREATE_ALBUM_URL,
+  REQUEST_HEADERS_POST,
+  REQUEST_HEADERS_POST_PHOTOS,
+  SEND_PHOTO_URL,
+} from "@const";
+import axios from "axios";
 import { IAlbumsResponse, IInfoResponse } from "./axios-response-types.types";
 import axiosInstance from "./custom-axios-instance";
 
@@ -52,20 +59,22 @@ class AlbumsService {
     }
   }
 
-  public async postPhotos(formData: FormData): Promise<IInfoResponse> {
+  public async postPhotos(formData: FormData) {
     try {
-      const response: IInfoResponse = await axiosInstance().post(
-        SEND_PHOTO_URL,
-        formData,
-        {
-          headers: {
-            ...REQUEST_HEADERS_POST,
-          },
-        }
-      );
+      const accessToken = localStorageHandler.getAccessToken();
+      const response = await axios({
+        method: "post",
+        url: SEND_PHOTO_URL,
+        data: formData,
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          ...REQUEST_HEADERS_POST_PHOTOS,
+        },
+      });
       return response;
     } catch (err: any) {
-      console.error("An error occured in post photos request: ", err);
+      console.error("An error occured in postPhotos: ", err);
       return err.code;
     }
   }

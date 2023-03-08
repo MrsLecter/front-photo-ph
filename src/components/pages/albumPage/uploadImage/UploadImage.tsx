@@ -10,9 +10,10 @@ import {
   UploadImageElementOwners,
   UploadImageElementImg,
   UploadImageElementOwnersLabel,
+  StyledSubmitBtn,
 } from "./UploadImage.styles";
-import deleteSVG from "@images/delete.svg";
 import approvedSVG from "@images/approved.svg";
+import deleteSVG from "@images/delete.svg";
 import selectSVG from "@images/select.svg";
 import { AppUrlsEnum } from "@const";
 import albumsService from "@/api/albums-service";
@@ -45,10 +46,6 @@ const UploadImage: React.FC<{ albumName: string }> = ({ albumName }) => {
     ownersList[index] = event.target.value;
   };
 
-  const confirmClickHandler = () => {
-    navigate("../");
-  };
-
   const submitFormHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     let formData = new FormData();
@@ -66,7 +63,7 @@ const UploadImage: React.FC<{ albumName: string }> = ({ albumName }) => {
     }
     const postPhotosResponse = await albumsService.postPhotos(formData);
     if (postPhotosResponse.status === 201) {
-      navigate("../" + AppUrlsEnum.ALBUM_PAGE);
+      navigate("../");
     } else {
       navigate("../" + AppUrlsEnum.INFO + `/${"photo not sent! Try again!"}`);
     }
@@ -77,10 +74,8 @@ const UploadImage: React.FC<{ albumName: string }> = ({ albumName }) => {
       <UploadImageElementLogo>Upload your images</UploadImageElementLogo>
 
       <form name="photos" onSubmit={submitFormHandler} method="post">
+        <BtnFormSubmit />
         <UploadImageElementBtnPanel>
-          <button onClick={confirmClickHandler} type="submit">
-            <img src={approvedSVG} alt="approve.svg" /> Confirm
-          </button>
           <UploadImageElementChooseBlock />
           <label htmlFor="images">
             <img src={selectSVG} alt="approve.svg" />
@@ -121,6 +116,14 @@ const UploadImage: React.FC<{ albumName: string }> = ({ albumName }) => {
         </UploadImageElementList>
       </form>
     </UploadImageElement>
+  );
+};
+
+const BtnFormSubmit = () => {
+  return (
+    <StyledSubmitBtn type="submit">
+      <img src={approvedSVG} alt="approve.svg" /> Confirm
+    </StyledSubmitBtn>
   );
 };
 
