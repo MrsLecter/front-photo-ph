@@ -50,7 +50,6 @@ const UploadImage: React.FC<{ albumName: string }> = ({ albumName }) => {
 
   const submitFormHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.info("submitted...");
     setIsLoading(true);
     let formData = new FormData();
     formData.append("album", albumName);
