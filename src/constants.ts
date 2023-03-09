@@ -31,7 +31,7 @@ export const REQUEST_HEADERS_POST_PHOTOS = {
   "Content-Security-Policy": "default-src self",
 };
 
-export const BASIC_URL = `https://bc18-5-255-182-125.eu.ngrok.io`;
+export const BASIC_URL = `https://e0e5-5-255-182-125.eu.ngrok.io`;
 export const REGISTRATION_URL = `${BASIC_URL}/ph-register`;
 export const LOGIN_URL = `${BASIC_URL}/ph-login`;
 export const REFRESH_URL = `${BASIC_URL}/refresh-ph-tokens`;
